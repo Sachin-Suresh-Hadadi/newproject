@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1>Buckets Stored</h1>
+    <table border>
+        {% csrf_token %}
+        <tr>
+            <th>name</th>
+            <th>date</th>
+        </tr>
+        {% for item in result.buckets %}
+        <tr>
+            <th>{{item.Name}}</th>
+            <th>{{item.CreationDate}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+   
+    <form action="Delete_Bucket" method="POST">
+        <h1>Delete the Bucket</h1>
+        {% csrf_token%}
+        ENTER THE BUCKET NAME : <input type="text" name="bucket_name">
+        <button type="submit" name="Delete_bucket">delete</button>
+    </form>  
+    
+    <form action="Add_File" method="POST">
+        <h1>Upload The File To Bucket</h1>
+        {% csrf_token%}
+        ENTER THE BUCKET NAME : <input type="text" name="bucket_name_">
+        ENTER THE PATH : <input type="text" name="file_path">
+        CHOOSE THE FILE TO SAVE :<input type="text" name="choosen_file">
+        <button type="submit" name="ADD_FILE">add file</button>
+    </form>
+   
+    <form action="Delete_File" method="POST">
+        <h1>Delete The File From Bucket</h1>
+        {% csrf_token%}
+        ENTER THE BUCKET NAME : <input type="text" name="bucket_name_">
+        ENTER THE FILE TO DELETE :<input type="text" name="choosen_file">
+        <button type="submit" name="DELETE_FILE">Delete file</button>
+    </form>   
+    <form action="copy_file" method="POST">
+        <h1>Copy File Between Buckets</h1>
+        {%csrf_token%}
+        ENTER THE SOURCE BUCKET : <input type="text" name="from_bucket">
+        ENTER THE DESTINATION BUCKET : <input type="text" name="to_bucket">
+        ENTER THE FILE TO UPLOAD : <input type="text" name="file_name">
+        <button type="submit" name="COPY_FILE">copy</button>
+    </form>  
+    <form action="move_file" method="POST">
+        <h1>Move File Between Buckets</h1>
+        {%csrf_token%}
+        ENTER THE SOURCE BUCKET : <input type="text" name="from_bucket">
+        ENTER THE DESTINATION BUCKET : <input type="text" name="to_bucket">
+        ENTER THE FILE TO UPLOAD : <input type="text" name="file_name">
+        <button type="submit" name="MOVE_FILE">move</button>
+    </form>     
+
+
+</body>
+</html>
